@@ -1,0 +1,10 @@
+@url = https://bug-free-space-spoon-wrvrgx99px57hvg5j-8080.app.github.dev/
+
+GET {{url}}
+
+###
+
+POST {{url}}
+Content-Type: text/plain
+
+Abacate

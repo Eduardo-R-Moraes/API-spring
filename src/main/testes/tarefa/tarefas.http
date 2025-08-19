@@ -14,6 +14,12 @@ GET {{url}}
 
 ###
 
+###
+
+GET {{url}}/2
+
+###
+
 PUT {{url}}/2
 Content-Type: application/json
 

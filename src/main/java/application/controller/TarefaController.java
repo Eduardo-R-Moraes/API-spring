@@ -28,6 +28,19 @@ public class TarefaController {
         return tarefaRepo.save(novaTarefa);
     }
 
+    @GetMapping("/{id}")
+    public Tarefa getOne(@PathVariable long id) {
+        Optional<Tarefa> resultado = tarefaRepo.findById(id);
+
+        if (resultado.isEmpty()) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Tarefa não encontrada."
+            );
+        }
+
+        return resultado.get();
+    }
+
     @GetMapping
     public Iterable<Tarefa> getAll() {
         return tarefaRepo.findAll();

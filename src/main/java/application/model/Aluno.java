@@ -6,14 +6,13 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-// As anotações aqui presentes são do ecosistema javas presentes no JPA 
-
 @Entity
 @Getter
 @Setter
-public class Tarefa {
+public class Aluno {
     @Id
     @GeneratedValue
-    private long id;
-    private String descricao;
+    long id;
+    String nome;
+    int idade;
 }

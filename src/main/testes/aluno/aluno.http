@@ -1,0 +1,32 @@
+@url = https://effective-computing-machine-5gvgx544j4x42vw64-8080.app.github.dev/alunos
+
+GET {{url}}
+
+### 
+
+GET {{url}}/0
+
+###
+
+POST {{url}}
+Content-Type: application/json
+
+{
+    "nome": "Daniel Vieira",
+    "idade": 21
+}
+
+### 
+
+PUT {{url}}/0
+Content-Type: application/json
+
+{
+    "nome": "Eduardo Moraes",
+    "idade": 20
+}
+
+
+### 
+
+DELETE {{url}}/0

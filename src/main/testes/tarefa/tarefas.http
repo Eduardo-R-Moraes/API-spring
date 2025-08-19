@@ -20,7 +20,7 @@ GET {{url}}/2
 
 ###
 
-PUT {{url}}/2
+PUT {{url}}/4
 Content-Type: application/json
 
 {

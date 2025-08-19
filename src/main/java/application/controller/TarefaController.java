@@ -1,12 +1,14 @@
 package application.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import application.model.Tarefa;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,16 +52,24 @@ public class TarefaController {
     public Tarefa update(@PathVariable long id, @RequestBody Tarefa novosDados) {
         Optional<Tarefa> resultado = tarefaRepo.findById(id);
 
-        if (resultado.isPresent()) {
-            resultado.get().setDescricao(novosDados.getDescricao());
-            return tarefaRepo.save(resultado.get());
+        if (resultado.isEmpty()) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Tarefa não encontrada."
+            );
         }
 
-        return new Tarefa();
+        resultado.get().setDescricao(novosDados.getDescricao());
+        return tarefaRepo.save(resultado.get());
     }
 
     @DeleteMapping("/{id}")
     public void remove(@PathVariable long id) {
+        if (!tarefaRepo.existsById(id)) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Tarefa não encontrada"
+            ); 
+        }
+
         tarefaRepo.deleteById(id);
     }
 }
